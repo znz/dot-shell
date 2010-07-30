@@ -1,0 +1,1 @@
+export GZIP=-9
