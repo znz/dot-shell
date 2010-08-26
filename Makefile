@@ -8,3 +8,7 @@ $(HOME)/.bashrc:
 all:: $(HOME)/.bash_profile
 $(HOME)/.bash_profile:
 	echo ". ~/.bashrc" > $@
+
+all:: $(HOME)/.zshrc
+$(HOME)/.zshrc:
+	echo ". $$(pwd)/zshrc.zsh" > $@
