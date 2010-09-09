@@ -36,6 +36,9 @@ my_set_cc () {
     fi
 }
 
+# increase the cache-size
+#ccache -M 10G
+
 #export CC='ccache gcc' CXX='ccache g++'
 if [ "${CC+set}" != set ]; then
     my_set_cc
