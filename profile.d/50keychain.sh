@@ -31,6 +31,7 @@ my_init_keychain () {
             return
         fi
     fi
+    my_keychain_env
     if [ -n "$SSH_AGENT_PID" ]; then
         if kill -0 "$SSH_AGENT_PID" >/dev/null 2>&1; then
             return
