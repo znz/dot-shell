@@ -31,6 +31,7 @@ my_init_keychain () {
             return
         fi
     fi
+    my_keychain_env
     if [ -n "$SSH_AGENT_PID" ]; then
         if kill -0 "$SSH_AGENT_PID" >/dev/null 2>&1; then
             return
@@ -38,7 +39,7 @@ my_init_keychain () {
     fi
     find /tmp -maxdepth 1 -name ssh-\* -type d -uid "`id -u`" -perm 700 -exec /bin/rm -rfv -- '{}' \;
     find "$HOME/.ssh" -name "*id_[dr]sa" | xargs -t keychain
-    create_cachedir_tag keychain "$HOME/.keychain"
+    my_create_cachedir_tag keychain "$HOME/.keychain"
     my_keychain_env
 }
 

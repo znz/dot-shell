@@ -3,9 +3,9 @@ my_create_cachedir_tag () {
     local cachedir="$2"
     local tag="$cachedir/CACHEDIR.TAG"
     if [ ! -d "$cachedir" ]; then
-	echo "create_cachedir_tag: $cachedir is not directory" 1>&2
+	echo "my_create_cachedir_tag: $cachedir is not directory" 1>&2
     elif [ ! -f "$tag" ]; then
-	echo "create_cachedir_tag: create $tag for $application_name" 1>&2
+	echo "my_create_cachedir_tag: create $tag for $application_name" 1>&2
 	{
 	    echo "Signature: 8a477f597d28d172789f06886806bc55"
 	    echo "# This file is a cache directory tag created by $application_name"
