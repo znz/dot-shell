@@ -146,8 +146,11 @@ my_prompt_init () {
 
     # %n: $USERNAME
     # %m: '.'の前までのホスト名
+    local MY_PROMPT_BODY='%n@%m'
+    # sshの接続元
+    MY_PROMPT_BODY+="${SSH_CLIENT:+!${SSH_CLIENT%% *}}"
     # %%: %
-    local MY_PROMPT_BODY='%n@%m%%'
+    MY_PROMPT_BODY+='%%'
     # 上で調べたOSの情報
     MY_PROMPT_BODY+="$MY_OS"
     # %d: カレントディレクトリ
