@@ -158,6 +158,11 @@ my_prompt_init () {
     MY_PROMPT_BODY+=':%d'
     MY_PROMPT_BODY+=' '
 
+    # rvmの情報
+    if type __rvm_environment_identifier >/dev/null; then
+	MY_PROMPT_BODY+='$(__rvm_environment_identifier) '
+    fi
+
     # vcs_info (my_vcs_info_init 参照)
     if whence my_vcs_info >/dev/null; then
         MY_PROMPT_BODY+="%${my_psvar_vcs_info_index}v"
