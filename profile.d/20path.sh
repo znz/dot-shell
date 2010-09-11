@@ -36,5 +36,7 @@ my_append_path () {
 
 my_prepend_path /opt/local/bin
 my_prepend_path /opt/local/sbin
-my_prepend_path $HOME/opt/*/bin
+if [ -d $HOME/opt ]; then
+    my_prepend_path $HOME/opt/*/bin
+fi
 my_prepend_path $HOME/bin
