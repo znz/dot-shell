@@ -141,7 +141,7 @@ my_prompt_init () {
 
     # 直前のコマンドの終了ステータスが0以外のときは赤くする。
     # ${MY_MY_PROMPT_COLOR}はprecmdで変化させている数値。
-    local MY_COLOR="$ESCX"'%(0?.${psvar[$my_psvar_color_index]}.31)'m
+    local MY_COLOR="$ESCX%(0?.%${my_psvar_color_index}v.31)m"
     local NORMAL_COLOR="$ESCX"m
 
     # %n: $USERNAME
