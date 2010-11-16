@@ -11,8 +11,13 @@ alias rd=rmdir
 alias j=jobs
 
 alias bell='echo -e "\a\c"'
-if [ -x /usr/bin/paplay -a -f /usr/share/sounds/gnome/default/alerts/drip.ogg ]; then
-    alias bell='/usr/bin/paplay /usr/share/sounds/gnome/default/alerts/drip.ogg'
+
+if [ -x /usr/bin/paplay -a -f /usr/share/sounds/gnome/default/alerts/drip.ogg -a -f /usr/share/sounds/gnome/default/alerts/glass.ogg ]; then
+    alias bell_ok='/usr/bin/paplay /usr/share/sounds/gnome/default/alerts/drip.ogg'
+    alias bell_ng='/usr/bin/paplay /usr/share/sounds/gnome/default/alerts/glass.ogg'
+else
+    alias bell_ok=bell
+    alias bell_ng=bell
 fi
 alias odx='od -A x -t x1z'
 

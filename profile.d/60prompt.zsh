@@ -14,9 +14,16 @@ my_precmd_beep () {
     # 長時間かかるコマンドの終了を通知
     # [ $TTYIDLE -gt 10 ] && echo "\aTTYIDLE=$TTYIDLE"
     # bell は echo "\a" のようなものの alias
-    [ $TTYIDLE -gt 10 -a $TTYIDLE -lt 86400 ] && bell
+    local exit_status="$(print -P '%?')"
+    if [ $TTYIDLE -gt 10 -a $TTYIDLE -lt 86400 ]; then
+	if [ 0 -eq $exit_status ]; then
+	    bell_ok &!
+	else
+	    bell_ng &!
+	fi
+    fi
 }
-precmd_functions=($precmd_functions my_precmd_beep)
+precmd_functions=(my_precmd_beep)
 
 typeset -ga precmd_functions
 
