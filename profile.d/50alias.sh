@@ -9,6 +9,7 @@ alias rd=rmdir
 ## short alias
 #alias h=history
 alias j=jobs
+alias p='ruby -e "p ARGV" --'
 
 alias bell='echo -e "\a\c"'
 
