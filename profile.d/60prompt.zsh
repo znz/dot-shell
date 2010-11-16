@@ -13,7 +13,8 @@ setopt PROMPT_SUBST
 my_precmd_beep () {
     # 長時間かかるコマンドの終了を通知
     # [ $TTYIDLE -gt 10 ] && echo "\aTTYIDLE=$TTYIDLE"
-    [ $TTYIDLE -gt 10 -a $TTYIDLE -lt 86400 ] && echo "\a"
+    # bell は echo "\a" のようなものの alias
+    [ $TTYIDLE -gt 10 -a $TTYIDLE -lt 86400 ] && bell
 }
 precmd_functions=($precmd_functions my_precmd_beep)
 
