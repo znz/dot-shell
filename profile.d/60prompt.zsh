@@ -23,9 +23,7 @@ my_precmd_beep () {
 	fi
     fi
 }
-precmd_functions=(my_precmd_beep)
-
-typeset -ga precmd_functions
+precmd_functions=($precmd_functions my_precmd_beep)
 
 my_psvar_init () {
     psvar=()
