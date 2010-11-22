@@ -20,9 +20,9 @@
 
 if [ -d /dev/cgroup/cpu/user ]; then
     mkdir -p -m 0700 /dev/cgroup/cpu/user/$$ > /dev/null 2>&1
-    echo $$ > /dev/cgroup/cpu/user/$$/tasks
-    echo "1" > /dev/cgroup/cpu/user/$$/notify_on_release
+    echo $$ >| /dev/cgroup/cpu/user/$$/tasks
+    echo "1" >| /dev/cgroup/cpu/user/$$/notify_on_release
 elif [ -d /sys/fs/cgroup/cpu/user ]; then
     mkdir -m 0700 /sys/fs/cgroup/cpu/user/$$
-    echo $$ > /sys/fs/cgroup/cpu/user/$$/tasks
+    echo $$ >| /sys/fs/cgroup/cpu/user/$$/tasks
 fi
