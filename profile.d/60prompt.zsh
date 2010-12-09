@@ -45,17 +45,27 @@ my_vcs_info_init () {
     zstyle ':vcs_info:*' formats '(%s)-[%b] '
     zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a] '
     if whence locale >/dev/null && [[ -n ${(M)$(locale -a):#en_US.utf8} ]]; then
-        my_vcs_info () {
-            LANG=en_US.UTF-8 vcs_info "$@"
-            psvar[$my_psvar_vcs_info_index]="$vcs_info_msg_0_"
-        }
+        my_vcs_info_lang=en_US.utf8
     else
-        my_vcs_info () {
-            LANG=C vcs_info "$@"
-            psvar[$my_psvar_vcs_info_index]="$vcs_info_msg_0_"
-        }
+        my_vcs_info_lang=C
     fi
+    my_vcs_info () {
+        case $my_cwd_fs_type in
+            nfs*)
+                vcs_info_msg_0_=
+                ;;
+            *)
+                LANG=$my_vcs_info_lang vcs_info "$@"
+                ;;
+        esac
+        psvar[$my_psvar_vcs_info_index]="$vcs_info_msg_0_"
+    }
     precmd_functions+=my_vcs_info
+    my_cwd_fs_type_update () {
+        my_cwd_fs_type="${${=${${(f)$(df -PT . 2>/dev/null)}[2]}}[2]}"
+    }
+    my_cwd_fs_type_update
+    chpwd_functions+=my_cwd_fs_type_update
 }
 my_vcs_info_init
 
