@@ -10,4 +10,6 @@ setopt PUSHD_MINUS              # +と-の意味を入れ替える。
 setopt PUSHD_SILENT             # pushdやpopdの度にdirstackを表示しない。
 setopt PUSHD_TO_HOME            # 引数無しのpushdをpushd $HOMEと同じようにする。
 
-dirs ${(@u)$(pgrep -u $UID zsh | xargs -iPID readlink "/proc/PID/cwd")}
+if [ -L /proc/self/cwd ]; then
+    dirs ${(@u)$(pgrep -u $UID zsh | xargs -iPID readlink "/proc/PID/cwd")}
+fi
