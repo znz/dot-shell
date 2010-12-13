@@ -47,6 +47,9 @@ my_set_pager () {
     elif type lv >/dev/null 2>&1; then
 	PAGER=lv
 	READNULLCMD=lv
+	if type less >/dev/null 2>&1; then
+	    export GIT_PAGER=less
+	fi
     elif type less >/dev/null 2>&1; then
 	PAGER=less
 	more () {
