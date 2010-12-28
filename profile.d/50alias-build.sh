@@ -17,3 +17,10 @@ autoconf () {
 gcc_macros () {
     gcc -E -dM -xc /dev/null
 }
+
+Log () {
+    "$@" 2>&1 | tee _"$(echo "$@" | tr ' ' '_')".log
+    # PIPESTATUS for bash
+    # pipestatus for zsh
+    return $(( ${PIPESTATUS[0]:-0} + ${pipestatus[1]:-0} ))
+}

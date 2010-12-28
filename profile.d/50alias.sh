@@ -119,3 +119,8 @@ TT () {
     fi
     return 0
 }
+
+eijiro () {
+    # $PAGER は less か lv を想定
+    w3m "http://eow.alc.co.jp/$*/UTF-8/" | $PAGER '+/検索文字列'
+}
