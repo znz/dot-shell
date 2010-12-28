@@ -18,7 +18,7 @@ gcc_macros () {
     gcc -E -dM -xc /dev/null
 }
 
-L () {
+Log () {
     "$@" 2>&1 | tee _"$(echo "$@" | tr ' ' '_')".log
     # PIPESTATUS for bash
     # pipestatus for zsh
