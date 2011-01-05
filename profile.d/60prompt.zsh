@@ -165,7 +165,7 @@ my_prompt_init () {
     local MY_PROMPT_BODY='%n@%m'
     # sshの接続元
     # (IPv6 のリンクローカルアドレスの場合 % を含むことがある)
-    MY_PROMPT_BODY+="${SSH_CLIENT:+\!${${SSH_CLIENT%% *}/\%/%%}}"
+    MY_PROMPT_BODY+="${SSH_CLIENT:+!${${SSH_CLIENT%% *}/\%/%%}}"
     # %%: %
     MY_PROMPT_BODY+='%%'
     # 上で調べたOSの情報
