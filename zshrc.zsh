@@ -8,6 +8,9 @@ my_reload () {
 		;;
 	esac
     done
+    if [ -f "$HOME/.zshrc.$HOST" ]; then
+	. "$HOME/.zshrc.$HOST"
+    fi
 }
 
 my_reload
