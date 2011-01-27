@@ -19,3 +19,4 @@ function my-ignore-eof {
 zle -N my-ignore-eof
 
 bindkey '^D' my-ignore-eof
+setopt ignoreeof
