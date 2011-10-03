@@ -4,6 +4,7 @@
 typeset -U path PATH
 
 path=(
-    # reject world-writable directories
-    $path(N^W)
+    # allow directories only (-/)
+    # reject world-writable directories (^W)
+    $path(N-/^W)
 )
