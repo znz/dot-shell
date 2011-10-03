@@ -1,16 +1,15 @@
-my_reload_base=${0%/*}
-my_reload () {
-    local f
-    for f in ${my_reload_base}/profile.d/*sh; do
-	case "$f" in
-	    *.sh|*.zsh)
-		. $f
-		;;
-	esac
-    done
-    if [ -f "$HOME/.zshrc.$HOST" ]; then
-	. "$HOME/.zshrc.$HOST"
-    fi
-}
+#!/bin/zsh
+my_zshrc_base=${0%/*}
+for my_zshrc_file in ${my_zshrc_base}/profile.d/*sh(N-.); do
+    case "$my_zshrc_file" in
+	*.sh|*.zsh)
+	    . "$my_zshrc_file"
+	    ;;
+    esac
+done
+unset my_zshrc_base
+unset my_zshrc_file
 
-my_reload
+if [ -f "$HOME/.zshrc.$HOST" ]; then
+    . "$HOME/.zshrc.$HOST"
+fi
