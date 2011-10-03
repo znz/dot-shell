@@ -17,11 +17,12 @@ my_set_pager () {
 	export LESSOPEN LESSCLOSE
     fi
 
+    LV="-cl"
     case $LANG in
-	ja_JP.[Uu][Tt][Ff]*8) JLESSCHARSET=japanese-utf-8 ; LV=-cOu8 ;;
-	ja_JP.SJIS)  JLESSCHARSET=japanese-sjis ;  LV=-cOs ;;
-	ja*)	     JLESSCHARSET=japanese-euc ;   LV=-cOej ;;
-	*)	     JLESSCHARSET=latin1 ;	   LV=-cAl1 ;;
+	ja_JP.[Uu][Tt][Ff]*8) JLESSCHARSET=japanese-utf-8 ; LV=${LV}Ou8 ;;
+	ja_JP.SJIS)  JLESSCHARSET=japanese-sjis ;  LV=${LV}Os ;;
+	ja*)	     JLESSCHARSET=japanese-euc ;   LV=${LV}Oej ;;
+	*)	     JLESSCHARSET=latin1 ;	   LV=${LV}Al1 ;;
     esac
     export JLESSCHARSET LV
 
