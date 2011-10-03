@@ -1,5 +1,4 @@
 #!/bin/sh
-# vim:set fileencoding=utf-8:
 
 errno () {
     #perl -le 'print join"\n",map{$!=$_}@ARGV' "$@"
