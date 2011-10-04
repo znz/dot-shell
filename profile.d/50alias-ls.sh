@@ -15,6 +15,9 @@ else
         Linux)
             alias ls='ls -F --color=auto'
             ;;
+        Darwin)
+            alias ls='ls -FG'
+            ;;
         *)
             alias ls='ls -F'
             ;;
