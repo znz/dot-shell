@@ -15,7 +15,7 @@ mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/shell"
 touch "${XDG_CACHE_HOME:-$HOME/.cache}/shell/$HOST.dirstack"
 my_save_dirstack () {
     dirstack=(${(@u)$(<"${XDG_CACHE_HOME:-$HOME/.cache}/shell/$HOST.dirstack")})
-    dirs -p >! "${XDG_CACHE_HOME:-$HOME/.cache}/shell/$HOST.dirstack"
+    dirs -lp >! "${XDG_CACHE_HOME:-$HOME/.cache}/shell/$HOST.dirstack"
 }
 chpwd_functions+=my_save_dirstack
 my_save_dirstack
