@@ -1,0 +1,14 @@
+#*#
+*.elc
+*.l[ao]
+*.o
+*.rej
+*.sw[po]
+*~
+.#*
+.*.rej
+.*~
+.DS_Store
+._*
+TAGS
+tmp/
