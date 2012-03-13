@@ -24,3 +24,13 @@ Log () {
     # pipestatus for zsh
     return $(( ${PIPESTATUS[0]:-0} + ${pipestatus[1]:-0} ))
 }
+
+init_git_info () {
+    if [ ! -d .git/info ]; then
+        echo ".git/info/ not found."
+        return
+    fi
+    if ! grep -q ChangeLog .git/info/attributes 2>/dev/null; then
+        echo "ChangeLog merge=merge-changelog" >> .git/info/attributes
+    fi
+}
