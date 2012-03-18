@@ -15,6 +15,12 @@ else
     my_compinit
 fi
 
+# cache
+zstyle ':completion:*' use-cache on
+if [ -d "${XDG_CACHE_HOME:-$HOME/.cache}/shell" ]; then
+    zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/shell/$HOST.zcompcache"
+fi
+
 # http://pc5.2ch.net/test/read.cgi/unix/1080002786/516-518n
 # 補完候補から.svnを除く。
 # .で始まるディレクトリが候補になっていなかったのでコメントアウトしていたが、
@@ -87,3 +93,21 @@ if is_cygwin; then
 else
     zstyle ':completion:*:commands' ignored-patterns '*.(#i)(BAK|SWP)' '*\~' '.cvsignore'
 fi
+
+# 候補が多いときに、補完候補をカーソルキーでも選べるようにする。
+# select=<NUM> means:
+# If an ambiguous completion produces at least <NUM> possibilities,
+# menu selection is started.
+zstyle ':completion:*:default' menu select=100
+
+# カレントディレクトリに候補が無い場合のみcdpath 上のディレクトリが候補となる。
+zstyle ':completion:*:cd:*' tag-order local-directories path-directories
+# cdpath 上のディレクトリは補完候補から外れる。
+#zstyle ':completion:*:path-directories' hidden true
+
+# 補完時のメッセージを詳しくする。
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' group-name ''
