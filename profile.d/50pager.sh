@@ -15,6 +15,9 @@ my_set_pager () {
 	LESSOPEN="| /usr/bin/lesspipe '%s'"
 	LESSCLOSE="/usr/bin/lesspipe '%s' '%s'"
 	export LESSOPEN LESSCLOSE
+	if type source-highlight >/dev/null 2>&1 ; then
+	    LESSOPEN="| $my_dot_shell_dir/lesspipe/lessopen.sh '%s'"
+	fi
     fi
 
     LV="-cl"
