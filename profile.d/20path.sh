@@ -34,6 +34,19 @@ my_append_path () {
     done
 }
 
+my_prepend_path_before () {
+    case ":$PATH:" in
+	*:"$1":*:"$2":*)
+	    PATH="$2:$PATH"
+	    ;;
+	*)
+	    ;;
+   esac
+   return 0
+}
+
+my_prepend_path_before /usr/bin /usr/local/bin
+my_prepend_path_before /usr/sbin /usr/local/sbin
 my_prepend_path /opt/local/bin
 my_prepend_path /opt/local/sbin
 if [ -d $HOME/opt ]; then
