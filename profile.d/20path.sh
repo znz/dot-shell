@@ -1,8 +1,8 @@
 my_in_path_p () {
-    local p path
+    local p path_
     p=$1
-    path=${2:-$PATH}
-    case ":$path:" in
+    path_=${2:-$PATH}
+    case ":$path_:" in
 	*:"$p":*)
 	    return 0
 	    ;;
