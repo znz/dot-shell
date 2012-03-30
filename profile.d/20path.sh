@@ -40,5 +40,3 @@ if [ -d $HOME/opt ]; then
     my_prepend_path $HOME/opt/*/bin
 fi
 my_prepend_path $HOME/bin
-# MacPorts and easy_install-2.7
-my_append_path /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin
