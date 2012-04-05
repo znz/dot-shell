@@ -40,7 +40,7 @@ my_precmd_prompt_color () {
 precmd_functions+=my_precmd_prompt_color
 
 my_vcs_info_init () {
-    [[ -n ${(M)fpath:#*/VCS_Info*} ]] || return
+    [[ -n $(echo ${^fpath}/vcs_info(N)) ]] || return
     autoload -Uz vcs_info
     zstyle ':vcs_info:*' formats '(%s)-[%b] '
     zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a] '
