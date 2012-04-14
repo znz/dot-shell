@@ -19,3 +19,10 @@ rvm () {
 	return 1
     fi
 }
+
+# rbenv is not installed.
+if [ ! -d $HOME/.rbenv ]; then
+    if [[ -s "$HOME/.rvm/scripts/rvm" ]]  ; then
+	. "$HOME/.rvm/scripts/rvm"
+    fi
+fi
