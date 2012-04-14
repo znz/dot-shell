@@ -29,6 +29,8 @@ my_psvar_init () {
     psvar=()
     my_psvar_color_index=1
     my_psvar_vcs_info_index=2
+    my_psvar_rbenv_index=3
+    my_psvar_rvm_index=4
     psvar[$my_psvar_color_index]=0
 }
 my_psvar_init
@@ -38,6 +40,20 @@ my_precmd_prompt_color () {
     psvar[$my_psvar_color_index]=$[32+($psvar[$my_psvar_color_index]-30)%5]
 }
 precmd_functions+=my_precmd_prompt_color
+
+my_precmd_prompt_rbenv () {
+    if [[ "$(type ruby)" =~ rbenv ]]; then
+        psvar[$my_psvar_rbenv_index]="$(rbenv version-name) "
+    fi
+}
+precmd_functions+=my_precmd_prompt_rbenv
+
+my_precmd_prompt_rvm () {
+    if [[ -n "$rvm_path" ]]; then
+        psvar[$my_psvar_rvm_index]="$(rvm current) "
+    fi
+}
+precmd_functions+=my_precmd_prompt_rvm
 
 my_vcs_info_init () {
     [[ -n $(echo ${^fpath}/vcs_info(N)) ]] || return
@@ -175,10 +191,9 @@ my_prompt_init () {
     MY_PROMPT_BODY+=':%d'
     MY_PROMPT_BODY+=' '
 
-    # rvmの情報
-    if type __rvm_environment_identifier >/dev/null; then
-	MY_PROMPT_BODY+='$(__rvm_environment_identifier) '
-    fi
+    # ruby
+    MY_PROMPT_BODY+="%${my_psvar_rbenv_index}v"
+    MY_PROMPT_BODY+="%${my_psvar_rvm_index}v"
 
     # vcs_info (my_vcs_info_init 参照)
     if whence my_vcs_info >/dev/null; then
