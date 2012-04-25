@@ -11,6 +11,7 @@ rvm () {
     if [ -n "$BASH_VERSION" -o -n "$ZSH_VERSION" ]; then
 	unset -f rvm
 	if [[ -s "$HOME/.rvm/scripts/rvm" ]]  ; then
+	    my_append_path "$HOME/.rvm/bin"
 	    . "$HOME/.rvm/scripts/rvm"
 	fi
 	rvm "$@"
@@ -23,6 +24,8 @@ rvm () {
 # rbenv is not installed.
 if [ ! -d $HOME/.rbenv ]; then
     if [[ -s "$HOME/.rvm/scripts/rvm" ]]  ; then
+	unset -f rvm
+	my_append_path "$HOME/.rvm/bin"
 	. "$HOME/.rvm/scripts/rvm"
     fi
 fi
