@@ -24,3 +24,5 @@ $(HOME)/.vimrc:
 	echo "syntax on" > $@
 	echo "set bg=dark" >> $@
 	echo "set modeline" >> $@
+	echo "set list" >> $@
+	echo "set listchars=tab:>-,trail:~,nbsp:%,extends:>,precedes:<" >> $@
