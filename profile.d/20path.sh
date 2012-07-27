@@ -55,3 +55,4 @@ if [ -d $HOME/opt ]; then
     my_prepend_path $HOME/opt/*/bin
 fi
 my_prepend_path $HOME/bin
+my_prepend_path $HOME/homebrew/bin
