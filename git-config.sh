@@ -10,3 +10,4 @@ git config --global core.excludesfile "$(pwd)/gitignore"
 #git config --global color.status auto
 git config --global color.ui auto
 git config --global svn.rmdir true
+git config --global push.default simple
