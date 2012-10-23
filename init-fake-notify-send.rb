@@ -4,7 +4,7 @@ require 'pathname'
 home = Pathname.new(ENV['HOME'])
 fake_bin = home + 'opt/fake/bin'
 fake_bin.mkpath
-(fake_bin + 'notify-send').open('w') do |f|
+(fake_bin + 'notify-send').open('w', 0755) do |f|
   f.puts <<-'RUBY'
 #!/usr/bin/env ruby
 require 'tmpdir'
@@ -27,7 +27,7 @@ end
 
 byobu_bin = home + '.byobu/bin'
 byobu_bin.mkpath
-(byobu_bin + '5_fake-notify-send').open('w') do |f|
+(byobu_bin + '5_fake-notify-send').open('w', 0755) do |f|
   f.puts <<-'SH'
 #!/bin/sh -e
 tail -n1 ${TMPDIR:-${TMP:-${TEMP:-/tmp}}}/notify-send.log
