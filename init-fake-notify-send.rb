@@ -19,6 +19,8 @@ open("#{Dir.tmpdir}/notify-send.log", 'a+') do |f|
     color = 'rw'
   when /success/
     color = 'gw'
+  when /pending/
+    color = 'yw'
   end
   f.puts "\005{= #{color}}#{message}\005{-}"
 end
