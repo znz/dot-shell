@@ -6,7 +6,7 @@ fi
 if [ -f /usr/local/share/zsh/functions/git-flow-completion.zsh ]; then
     source /usr/local/share/zsh/functions/git-flow-completion.zsh
 elif whence brew >/dev/null; then
-   HOMEBREW_PREFIX=${$(whence brew):h:h}
+   HOMEBREW_PREFIX=$(brew --prefix)
    if [ -f "$HOMEBREW_PREFIX/share/zsh/functions/git-flow-completion.zsh" ]; then
        source "$HOMEBREW_PREFIX/share/zsh/functions/git-flow-completion.zsh"
    fi
