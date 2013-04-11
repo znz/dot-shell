@@ -6,7 +6,7 @@ rbenv () {
     fi
     if [ -n "$BASH_VERSION" -o -n "$ZSH_VERSION" ]; then
 	if [ -d "$HOME/.rbenv/bin" ]; then
-	    PATH="$HOME/.rbenv/bin:$PATH"
+	    PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
 	fi
 	unset -f rbenv
 	if type rbenv >/dev/null 2>&1; then
@@ -22,7 +22,7 @@ rbenv () {
 # rvm is not installed.
 if [[ ! -s "$HOME/.rvm/scripts/rvm" ]]  ; then
     if [ -d "$HOME/.rbenv/bin" ]; then
-	PATH="$HOME/.rbenv/bin:$PATH"
+	PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
     fi
     unset -f rbenv
     if type rbenv >/dev/null 2>&1; then
