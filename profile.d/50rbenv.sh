@@ -10,7 +10,7 @@ rbenv () {
 	fi
 	unset -f rbenv
 	if type rbenv >/dev/null 2>&1; then
-	    eval "$(rbenv init -)"
+	    eval "$(rbenv init - | grep -v 'rbenv rehash')"
 	fi
 	rbenv "$@"
     else
