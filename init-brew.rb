@@ -32,6 +32,7 @@ commands = {
   'cocot' => 'cocot',
   'mosh' => 'mobile-shell',
   '7z' => 'p7zip',
+  'gpg' => 'gnupg',
   'emacs' => %w'emacs --cocoa --srgb --with-gnutls',
 }
 commands.each do |cmd, *formula|
