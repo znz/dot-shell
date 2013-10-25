@@ -10,7 +10,7 @@ rbenv () {
 	fi
 	unset -f rbenv
 	if type rbenv >/dev/null 2>&1; then
-	    eval "$(rbenv init - | grep -v 'rbenv rehash')"
+	    eval "$(rbenv init - --no-rehash)"
 	fi
 	rbenv "$@"
     else
@@ -26,6 +26,6 @@ if [[ ! -s "$HOME/.rvm/scripts/rvm" ]]  ; then
     fi
     unset -f rbenv
     if type rbenv >/dev/null 2>&1; then
-	eval "$(rbenv init -)"
+	eval "$(rbenv init - --no-rehash)"
     fi
 fi
