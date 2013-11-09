@@ -60,6 +60,7 @@ my_vcs_info_init () {
     autoload -Uz vcs_info
     zstyle ':vcs_info:*' formats '(%s)-[%b] '
     zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a] '
+    zstyle ':vcs_info:*' disable cdv darcs mtn p4 svk tla
     if whence locale >/dev/null && [[ -n ${(M)$(locale -a):#en_US.utf8} ]]; then
         my_vcs_info_lang=en_US.utf8
     else
