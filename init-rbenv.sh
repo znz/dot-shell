@@ -9,7 +9,7 @@ if [ -d .rbenv ]; then
         git pull
     fi
 else
-    git clone git://github.com/sstephenson/rbenv.git .rbenv
+    git clone https://github.com/sstephenson/rbenv.git .rbenv
 fi
 
 cd
@@ -20,7 +20,15 @@ if [ -d ruby-build ]; then
     git pull
     cd ..
 else
-    git clone git://github.com/sstephenson/ruby-build.git
+    git clone https://github.com/sstephenson/ruby-build.git
+fi
+
+if [ -d rbenv-plug ]; then
+    cd rbenv-plug
+    git pull
+    cd ..
+else
+    git clone https://github.com/znz/rbenv-plug.git
 fi
 
 if [ -L /etc/alternatives/ruby ]; then
@@ -29,6 +37,6 @@ if [ -L /etc/alternatives/ruby ]; then
         git pull
         cd ..
     else
-        git clone git://github.com/terceiro/rbenv-alternatives.git
+        git clone https://github.com/terceiro/rbenv-alternatives.git
     fi
 fi
