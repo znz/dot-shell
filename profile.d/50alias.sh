@@ -124,3 +124,5 @@ eijiro () {
     # $PAGER は less か lv を想定
     w3m "http://eow.alc.co.jp/$*/UTF-8/" | $PAGER '+/検索文字列'
 }
+
+alias prevcmd="fc -nl -1 -1 | sed -e 's/^[[:space:]]*//'"
