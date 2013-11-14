@@ -1,10 +1,6 @@
 #!/bin/zsh
 
 watch=all
-# 起動したコマンドの「ユーザ消費時間+システム消費時間」が $REPORTTIME 秒よりも
-# 大きいときに time 内部コマンドを指定したのと同じ情報が表示される。
-# (zshの本 p.246 参照)
-REPORTTIME=1
 
 setopt PRINT_EXIT_VALUE
 unsetopt PROMPT_CR
