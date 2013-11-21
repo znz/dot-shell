@@ -14,6 +14,6 @@ git config --global svn.rmdir true
 git config --global push.default tracking
 
 GITHUB_URL_PREFIX="url.git@github.com:"
-git config --global --remove-section "$GITHUB_URL_PREFIX"
+git config --global --remove-section "$GITHUB_URL_PREFIX" || :
 git config --global       "$GITHUB_URL_PREFIX".pushInsteadOf "git://github.com/"
 git config --global --add "$GITHUB_URL_PREFIX".pushInsteadOf "https://github.com/"
