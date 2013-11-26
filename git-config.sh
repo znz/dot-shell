@@ -17,3 +17,9 @@ GITHUB_URL_PREFIX="url.git@github.com:"
 git config --global --remove-section "$GITHUB_URL_PREFIX" || :
 git config --global       "$GITHUB_URL_PREFIX".pushInsteadOf "git://github.com/"
 git config --global --add "$GITHUB_URL_PREFIX".pushInsteadOf "https://github.com/"
+# git/contrib/diff-highlight
+if type diff-highlight >/dev/null 2>&1; then
+  git config --global pager.log  'diff-highlight | $PAGER'
+  git config --global pager.show 'diff-highlight | $PAGER'
+  git config --global pager.diff 'diff-highlight | $PAGER'
+fi
