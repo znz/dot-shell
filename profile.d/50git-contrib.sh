@@ -15,4 +15,5 @@ fi
 if [ -n "$GIT_CONTRIB_DIR" ]; then
   my_append_path "$GIT_CONTRIB_DIR/diff-highlight"
   unset GIT_CONTRIB_DIR
+  export GIT_PAGER='diff-highlight | less'
 fi
