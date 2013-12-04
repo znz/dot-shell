@@ -12,8 +12,12 @@ elif type brew >/dev/null 2>&1; then
   unset HOMEBREW_PREFIX
 fi
 # diff-highlight
-if [ -n "$GIT_CONTRIB_DIR" ]; then
-  my_append_path "$GIT_CONTRIB_DIR/diff-highlight"
+if [ -n "${GIT_CONTRIB_DIR-}" ]; then
+  if [ -x "$GIT_CONTRIB_DIR/diff-highlight/diff-highlight" ]; then
+    my_append_path "$GIT_CONTRIB_DIR/diff-highlight"
+    export GIT_PAGER='diff-highlight | less'
+  elif [ -f "$GIT_CONTRIB_DIR/diff-highlight/diff-highlight" ]; then
+    export GIT_PAGER="perl $GIT_CONTRIB_DIR/diff-highlight/diff-highlight | less"
+  fi
   unset GIT_CONTRIB_DIR
-  export GIT_PAGER='diff-highlight | less'
 fi
