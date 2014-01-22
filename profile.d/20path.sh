@@ -56,6 +56,9 @@ if [ -d $HOME/opt ]; then
 fi
 my_prepend_path $HOME/bin
 if [ -d $HOME/homebrew/bin ]; then
+    if [ -d $HOME/homebrew/sbin ]; then
+	my_prepend_path $HOME/homebrew/sbin
+    fi
     my_prepend_path $HOME/homebrew/bin
     my_prepend_path_before /usr/bin $HOME/homebrew/bin
 fi
