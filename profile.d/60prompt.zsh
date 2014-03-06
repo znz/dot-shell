@@ -219,12 +219,14 @@ my_prompt_init () {
     # %B ... %b: 太字
     # %U ... %u: 下線
     # %#: '%'または'#'
-    PROMPT='%{'$RESET_ISO_2022$MY_COLOR'%}%B%#%{'$NORMAL_COLOR'%} %b'
+    #PROMPT='%{'$RESET_ISO_2022$MY_COLOR'%}%B%#%{'$NORMAL_COLOR'%} %b'
+    PROMPT='%{'$RESET_ISO_2022$MY_COLOR'%}%#%{'$NORMAL_COLOR'%} '
     # %$[$COLUMNS - 5]<...<: これ以降の部分が $COLUMNS - 5 より長くならない。
     # 長くなった時は
     # 「% _<.../path/to/cur/dir some other info>」(_はカーソル位置)
     # のように省略されて、$COLUMNS - 5の長さになる。
-    RPROMPT='%{'$MY_COLOR'%}%B<%U%$[$COLUMNS - 5]<...<'$MY_PROMPT_BODY'%u%{'$MY_COLOR'%}>%{'$NORMAL_COLOR'%}%b'
+    #RPROMPT='%{'$MY_COLOR'%}%B<%U%$[$COLUMNS - 5]<...<'$MY_PROMPT_BODY'%u%{'$MY_COLOR'%}>%{'$NORMAL_COLOR'%}%b'
+    RPROMPT='%{'$MY_COLOR'%}<%U%$[$COLUMNS - 5]<...<'$MY_PROMPT_BODY'%u%{'$MY_COLOR'%}>%{'$NORMAL_COLOR'%}'
     #RPROMPT='<%U%n@%m:%~%u>'
 }
 my_prompt_init
