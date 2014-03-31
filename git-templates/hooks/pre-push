@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+if [ -n "`git status --porcelain`" ]; then
+  echo working directory is not clean 1>&2
+  exit 1
+fi
