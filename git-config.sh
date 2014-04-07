@@ -18,6 +18,6 @@ git config --global --remove-section "$GITHUB_URL_PREFIX" || :
 git config --global       "$GITHUB_URL_PREFIX".pushInsteadOf "git://github.com/"
 git config --global --add "$GITHUB_URL_PREFIX".pushInsteadOf "https://github.com/"
 
-git config --global "url.git@gist.github.com:".pushInsteadOf "https://gist.github.com/"
+git config --global "url.git@gist.github.com:".pushInsteadOf "https://gist.github.com/$(git config github.user)/"
 
 git config --global init.templatedir "$(pwd)/git-templates"
