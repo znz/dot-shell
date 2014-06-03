@@ -8,7 +8,6 @@ tty_pwd_restore () {
         cd $(<"$tty_pwd")
     fi
 }
-tty_pwd_restore
 
 tty_pwd_save () {
     local tty_pwd="$(tty_pwd_file)"
@@ -18,4 +17,8 @@ tty_pwd_save () {
         pwd >"$tty_pwd"
     fi
 }
-chpwd_functions+=tty_pwd_save
+
+if [ "$HOME" = "$PWD" ]; then
+    tty_pwd_restore
+    chpwd_functions+=tty_pwd_save
+fi
