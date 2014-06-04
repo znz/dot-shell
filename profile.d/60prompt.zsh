@@ -226,7 +226,7 @@ my_prompt_init () {
     # 「% _<.../path/to/cur/dir some other info>」(_はカーソル位置)
     # のように省略されて、$COLUMNS - 5の長さになる。
     #RPROMPT='%{'$MY_COLOR'%}%B<%U%$[$COLUMNS - 5]<...<'$MY_PROMPT_BODY'%u%{'$MY_COLOR'%}>%{'$NORMAL_COLOR'%}%b'
-    RPROMPT='%{'$MY_COLOR'%}<%U%$[$COLUMNS - 5]<...<'$MY_PROMPT_BODY'%u%{'$MY_COLOR'%}>%{'$NORMAL_COLOR'%}'
+    RPROMPT='%{'$MY_COLOR'%}<%U%$[$COLUMNS - 4 - $SHLVL]<...<'$MY_PROMPT_BODY'%u%{'$MY_COLOR'%}${(l:$SHLVL::>:)}%{'$NORMAL_COLOR'%}'
     #RPROMPT='<%U%n@%m:%~%u>'
 }
 my_prompt_init
