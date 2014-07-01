@@ -114,3 +114,7 @@ zstyle ':completion:*' group-name ''
 
 # simple compdef
 compdef '_files -g "*.haml"' haml2slim
+
+# let_it_fall gem
+_let_it_fall () { _values $(let_it_fall help | awk '$2{print $2}') }
+compdef _let_it_fall let_it_fall
