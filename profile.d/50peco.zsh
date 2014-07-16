@@ -5,6 +5,7 @@ if (( ${+commands[peco]} )); then
       {
         ghq list --full-path
         (
+          autoload -Uz chpwd_recent_filehandler
           chpwd_recent_filehandler && for line in $reply; do
             if [[ -d "$line" ]]; then
               echo "$line"
