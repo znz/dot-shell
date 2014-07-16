@@ -1,7 +1,7 @@
 if (( ${+commands[peco]} )); then
   peco-go-to-dir () {
     local line
-    local selected=$(
+    local selected="$(
       {
         (
           autoload -Uz chpwd_recent_filehandler
@@ -14,9 +14,9 @@ if (( ${+commands[peco]} )); then
         ghq list --full-path
         for line in *(-/) ${^cdpath}/*(N-/); do echo "$line"; done | sort -u
       } | peco --query "$LBUFFER"
-    )
+    )"
     if [ -n "$selected" ]; then
-      BUFFER="cd ${selected}"
+      BUFFER="cd ${(q)selected}"
       zle accept-line
     fi
     zle clear-screen
