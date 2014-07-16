@@ -3,7 +3,6 @@ if (( ${+commands[peco]} )); then
     local line
     local selected=$(
       {
-        ghq list --full-path
         (
           autoload -Uz chpwd_recent_filehandler
           chpwd_recent_filehandler && for line in $reply; do
@@ -12,8 +11,9 @@ if (( ${+commands[peco]} )); then
             fi
           done
         )
-        for line in *(-/) ${^cdpath}/*(N-/); do echo "$line"; done
-      } | sort -u | peco --query "$LBUFFER"
+        ghq list --full-path
+        for line in *(-/) ${^cdpath}/*(N-/); do echo "$line"; done | sort -u
+      } | peco --query "$LBUFFER"
     )
     if [ -n "$selected" ]; then
       BUFFER="cd ${selected}"
