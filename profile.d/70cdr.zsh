@@ -13,6 +13,18 @@ if [[ -n $(echo ${^fpath}/chpwd_recent_dirs(N)) && -n $(echo ${^fpath}/cdr(N)) ]
   zstyle ':chpwd:*' recent-dirs-pushd true
 fi
 
+my-compact-chpwd-recent-dirs () {
+    emulate -L zsh
+    setopt extendedglob
+    local -aU reply
+    integer history_size
+    autoload -Uz chpwd_recent_filehandler
+    chpwd_recent_filehandler
+    history_size=$#reply
+    reply=(${^reply}(N))
+    (( $history_size == $#reply )) || chpwd_recent_filehandler $reply
+}
+
 # Local Variables:
 # coding: utf-8
 # indent-tabs-mode: nil
