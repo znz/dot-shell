@@ -9,7 +9,7 @@ why_exit () {
     if [ -z "$1" ]; then
         echo "$0 exit_status..."
     else
-        ruby -e 'system("");ARGV.each{|x|p Marshal.load(Marshal.dump($?)[/.*status/]+Marshal.dump(x.to_i)[/i.*/n])}' "$@"
+        ruby -e 'system("");ARGV.each{|x|p Marshal.load(Marshal.dump($?).sub(/(status)i.../n){$1+Marshal.dump(x.to_i)[/i.*/n]})}' "$@"
     fi
 }
 
