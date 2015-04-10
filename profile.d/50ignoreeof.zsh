@@ -8,9 +8,6 @@ function my-ignore-eof {
 	    echo exit
 	    BUFFER=" exit"
 	    builtin zle .accept-line
-	else
-	    # echo "zsh: use 'exit' to exit." in next line
-	    builtin zle .accept-line
 	fi
     else
 	builtin zle .delete-char-or-list
