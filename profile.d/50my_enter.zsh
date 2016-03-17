@@ -9,14 +9,14 @@ function my_enter {
     fi
     case $[MY_ENTER_COUNT++] in
         0)
-            BUFFER=" ls"
-            ;;
-        1)
             if [[ -d .svn ]]; then
                 BUFFER=" svn status"
             elif git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
                 BUFFER=" git status -sb"
             fi
+            ;;
+        1)
+            BUFFER=" ls"
             ;;
         *)
             unset MY_ENTER_COUNT
