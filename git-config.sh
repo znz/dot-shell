@@ -19,7 +19,10 @@ git config --global --remove-section "$GITHUB_URL_PREFIX" || :
 git config --global       "$GITHUB_URL_PREFIX".pushInsteadOf "git://github.com/"
 git config --global --add "$GITHUB_URL_PREFIX".pushInsteadOf "https://github.com/"
 # gist upload
-git config --global "url.git@gist.github.com:".pushInsteadOf "https://gist.github.com/$(git config github.user)/"
+github_user="$(git config github.user || :)"
+if [ -n "$github_user" ]; then
+    git config --global "url.git@gist.github.com:".pushInsteadOf "https://gist.github.com/$github_user/"
+fi
 # github download
 git config --global url."git://github.com/".insteadOf "https://github.com/"
 
