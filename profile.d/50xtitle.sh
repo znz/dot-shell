@@ -14,7 +14,7 @@ case $TERM in
         MY_XXTITLE_LEFT="\eP\e]0;"
         MY_XXTITLE_RIGHT="\a\e\\"
         if [ -n "$SSH_CLIENT" -o -n "$SSH_CONNECTION" ]; then
-            MY_XTITLE_LEFT="$MY_XTITLE_LEFT$HOST%%"
+            MY_XTITLE_LEFT="$MY_XTITLE_LEFT$(hostname -s)%%"
         fi
         my_prompt_title () {
             xtitle "$1"
