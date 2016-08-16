@@ -10,8 +10,11 @@ git config --global core.excludesfile "$(pwd)/gitignore"
 #git config --global color.status auto
 git config --global color.ui auto
 git config --global svn.rmdir true
-git config --global push.default simple ||
-git config --global push.default tracking
+if [ "$(lsb_release -cs)" = "precise" ]; then
+    git config --global push.default tracking
+else
+    git config --global push.default simple
+fi
 
 # github upload
 GITHUB_URL_PREFIX="url.git@github.com:"
