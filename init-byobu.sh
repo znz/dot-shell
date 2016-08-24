@@ -8,6 +8,6 @@ set -g prefix ^Z
 set -g prefix2 ^Z
 bind z send-prefix
 EOF
-SHELL=/bin/true byobu
+SHELL=/bin/true byobu || :
 sed -i -e 's/\([^#]\)logo/\1#logo/g' "$HOME/.byobu/status"
 echo 'SHELL=/bin/zsh byobu' >>"$HOME/.bash_history"
