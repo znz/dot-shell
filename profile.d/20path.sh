@@ -52,7 +52,7 @@ my_prepend_path_before /usr/sbin /usr/local/sbin
 my_prepend_path /opt/local/bin
 my_prepend_path /opt/local/sbin
 if [ -d $HOME/opt ]; then
-    my_prepend_path $HOME/opt/*/bin
+    my_append_path $HOME/opt/*/bin
 fi
 my_prepend_path $HOME/bin
 if [ -d $HOME/homebrew/bin ]; then
