@@ -42,6 +42,7 @@ my_prepend_path_before () {
 	    PATH="$2:$PATH"
 	    ;;
 	*)
+	    PATH="$2:$PATH"
 	    ;;
    esac
    return 0
