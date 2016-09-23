@@ -28,8 +28,11 @@ fi
 zstyle ':completion:*:*:*:*' ignored-patterns '.svn'
 
 # Prevent CVS files/directories from being completed:
-zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS'
+#zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS'
 #zstyle ':completion:*:cd:*' ignored-patterns '(*/)#CVS'
+
+# Rails でよく使う app/ の補完に邪魔なので app.json も無視する
+zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS|app.json'
 
 # Ignoring lost+found directories
 #zstyle ':completion:*:cd:*' ignored-patterns '(*/)#lost+found'
