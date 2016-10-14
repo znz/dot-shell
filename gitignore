@@ -10,7 +10,6 @@
 .*~
 .DS_Store
 ._*
-.rbenv-version
 .ruby-version
 TAGS
 \#*#
