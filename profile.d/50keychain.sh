@@ -26,7 +26,7 @@ my_keychain_env () {
 }
 
 my_init_keychain () {
-    if is_cygwin; then
+    if [ x$OSTYPE = xcygwin ]; then
         if ps | grep win-ssh-agent >/dev/null 2>&1; then
             return
         fi

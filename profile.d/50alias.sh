@@ -23,7 +23,7 @@ fi
 alias odx='od -A x -t x1z'
 
 # ping
-if is_cygwin; then
+if [ x$OSTYPE = xcygwin ]; then
     alias pin='ping -n 3'
 else
     alias pin='ping -c 3'

@@ -91,7 +91,7 @@ zstyle ':completion:*:(cd|mv|cp):*' ignore-parents parent pwd
 # With commands like `rm/kill/diff' it's annoying if one gets offered the same filename again even if it is already on the command line. To avoid that:
 zstyle ':completion:*:(rm|kill|diff):*' ignore-line yes
 
-if is_cygwin; then
+if [ x$OSTYPE = xcygwin ]; then
     zstyle ':completion:*:commands' ignored-patterns '*.(#i)(AX|BAK|BMP|DAT|DRV|DLL|EXE|IME|INF|INI|LA|LHP|LOG|LRC|MANIFEST|MFL|MOF|NLS|OCX|OLD|TLB|TXT|SCF|SWP|SYS|TMP)' '*Uninstall*' '*\~' '.cvsignore'
 else
     zstyle ':completion:*:commands' ignored-patterns '*.(#i)(BAK|SWP)' '*\~' '.cvsignore'

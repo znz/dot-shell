@@ -19,7 +19,7 @@ my_tmpdir () {
 
 if [ -n "$TMPDIR" ]; then
     : # already set TMPDIR
-elif is_cygwin; then
+elif [ x$OSTYPE = xcygwin ]; then
     TMPDIR=/tmp
 else
     TMPDIR="`my_tmpdir`"
