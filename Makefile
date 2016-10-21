@@ -26,3 +26,4 @@ $(HOME)/.vimrc:
 	echo "set modeline" >> $@
 	echo "set list" >> $@
 	echo "set listchars=tab:>-,trail:~,nbsp:%,extends:>,precedes:<" >> $@
+	echo "set spell" >> $@
