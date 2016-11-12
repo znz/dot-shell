@@ -10,7 +10,6 @@
 .*~
 .DS_Store
 ._*
-.ruby-version
 TAGS
 \#*#
 tmp/
