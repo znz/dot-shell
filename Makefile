@@ -17,6 +17,7 @@ misc:: $(HOME)/.gemrc
 $(HOME)/.gemrc:
 	echo "install: --no-rdoc --no-ri --format-executable" > $@
 	echo "update: --no-rdoc --no-ri --format-executable" >> $@
+	echo "gemsrc_use_ghq: 1" >> $@
 
 # minimal .vimrc
 misc:: $(HOME)/.vimrc
