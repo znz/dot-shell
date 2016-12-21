@@ -28,3 +28,14 @@ $(HOME)/.vimrc:
 	echo "set list" >> $@
 	echo "set listchars=tab:>-,trail:~,nbsp:%,extends:>,precedes:<" >> $@
 	echo "set spell" >> $@
+
+USER_NAME = John Doe
+USER_EMAIL = john@example.com
+
+$(HOME)/.gitconfig:
+	git config --global user.name "$(USER_NAME)"
+	git config --global user.email "$(USER_EMAIL)"
+	"$$(pwd)/git-config.sh"
+
+$(HOME)/.byobu:
+	"$$(pwd)/init-byobu.sh"
