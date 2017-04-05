@@ -38,7 +38,7 @@ my_init_keychain () {
         fi
     fi
     find /tmp -maxdepth 1 -name ssh-\* -type d -uid "`id -u`" -perm 700 -exec /bin/rm -rfv -- '{}' \;
-    find "$HOME/.ssh" -name "*id_[dr]sa" | xargs -t keychain
+    find "$HOME/.ssh" -name "id_*" -not -name "*.*" | xargs -t keychain
     my_create_cachedir_tag keychain "$HOME/.keychain"
     my_keychain_env
 }
