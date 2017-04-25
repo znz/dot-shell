@@ -27,7 +27,10 @@ if [ -n "$github_user" ]; then
     git config --global "url.git@gist.github.com:".pushInsteadOf "https://gist.github.com/$github_user/"
 fi
 # github download
-git config --global url."git://github.com/".insteadOf "https://github.com/"
+#git config --global url."git://github.com/".insteadOf "https://github.com/"
+#git config --global --unset url."git://github.com/".insteadOf || :
+git config --global --remove-section url."git://github.com/" || :
+git config --global url."https://github.com/".insteadOf "git://github.com/"
 
 # ghq section
 git config --global --remove-section "ghq" || :
