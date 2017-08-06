@@ -25,7 +25,8 @@ fi
 # 補完候補から.svnを除く。
 # .で始まるディレクトリが候補になっていなかったのでコメントアウトしていたが、
 # .で始まる補完の場合に出ていたので有効に。
-zstyle ':completion:*:*:*:*' ignored-patterns '.svn'
+# .gitignore などの保管に邪魔なので .git も追加。
+zstyle ':completion:*:*:*:*' ignored-patterns '.(svn|git)'
 
 # Prevent CVS files/directories from being completed:
 #zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS'
