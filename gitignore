@@ -13,4 +13,4 @@
 .bundle
 TAGS
 \#*#
-tmp/
+tmp/*
