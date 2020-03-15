@@ -1,14 +1,17 @@
 #!/bin/zsh
 autoload -U compinit
-if [ x$OSTYPE = xcygwin ]; then
+case "$OSTYPE" in
+  cygwin|darwin19.0)
     my_compinit () {
         compinit -u "$@"
     }
-else
+    ;;
+  *)
     my_compinit () {
         compinit "$@"
     }
-fi
+    ;;
+esac
 if [ -d "${XDG_CACHE_HOME:-$HOME/.cache}/shell" ]; then
     my_compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/shell/$HOST.zcompdump"
 else
