@@ -25,6 +25,7 @@ git config --global --add "$GITHUB_URL_PREFIX".pushInsteadOf "https://github.com
 github_user="$(git config github.user || :)"
 if [ -n "$github_user" ]; then
     git config --global "url.git@gist.github.com:".pushInsteadOf "https://gist.github.com/$github_user/"
+    git config --global ghq.user "$github_user"
 fi
 # github download
 #git config --global url."git://github.com/".insteadOf "https://github.com/"
@@ -35,8 +36,10 @@ git config --global url."https://github.com/".insteadOf "git://github.com/"
 # ghq section
 git config --global --remove-section "ghq" || :
 GHQ_ROOT="ghq.root"
-#git config --global --unset-all "$GHQ_ROOT" || :
-git config --global       "$GHQ_ROOT" "$HOME/s"
-git config --global --add "$GHQ_ROOT" "$HOME/g/src"
+git config --global --unset-all "$GHQ_ROOT" || :
+git config --global       "$GHQ_ROOT" "$HOME/go/src"
+git config --global --add "$GHQ_ROOT" "$HOME/s"
 
 git config --global init.templatedir "$(pwd)/git-templates"
+
+git config --global commit.gpgsign true
