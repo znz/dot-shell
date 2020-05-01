@@ -37,41 +37,6 @@ digx () {
     dig +short -x $(dig +short "$1"|tee /dev/stderr)
 }
 
-# ssh wrapper
-ssh () {
-    if [ $# -eq 1 ]; then
-	# hostname only
-	xtitle "$1"
-    fi
-    if [ -n "$TMPDIR" ]; then
-	command ssh -o ControlMaster=auto -o "ControlPath=$TMPDIR/%r,%h,%p" "$@"
-    else
-	command ssh "$@"
-    fi
-}
-
-euc_ssh () {
-    if [ $# -eq 1 ]; then
-	# hostname only
-	xtitle "$1"
-    fi
-    if [ -n "$WINDOW" ]; then
-	# in screen
-	echo change euc
-	screen -X encoding euc
-	ssh "$@"
-	screen -X encoding utf8
-	echo revert to utf8
-    else
-	echo via cocot
-	if [ -n "$TMPDIR" ]; then
-	    env TERM=xterm cocot -t utf-8 -p euc-jp -- ssh -o ControlMaster=auto -o "ControlPath=$TMPDIR/%r,%h,%p" "$@"
-	else
-	    env TERM=xterm cocot -t utf-8 -p euc-jp -- ssh "$@"
-	fi
-    fi
-}
-
 # ps
 alias psme="ps fuxwww"
 alias pst='pstree -ahpu'
