@@ -41,5 +41,6 @@ git config --global       "$GHQ_ROOT" "$HOME/go/src"
 git config --global --add "$GHQ_ROOT" "$HOME/s"
 
 git config --global init.templatedir "$(pwd)/git-templates"
+git config --global core.attributesfile "$(pwd)/gitattributes"
 
 git config --global commit.gpgsign true
