@@ -33,6 +33,9 @@ fi
 git config --global --remove-section url."git://github.com/" || :
 git config --global url."https://github.com/".insteadOf "git://github.com/"
 
+# https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file#ignore-commits-in-the-blame-view
+git config --global blame.ignoreRevsFile .git-blame-ignore-revs
+
 # ghq section
 git config --global --remove-section "ghq" || :
 GHQ_ROOT="ghq.root"
