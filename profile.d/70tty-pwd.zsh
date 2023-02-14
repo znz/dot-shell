@@ -18,7 +18,9 @@ tty_pwd_save () {
     fi
 }
 
-if [ "$HOME" = "$PWD" ]; then
+if [[ "$TERM_PROGRAM" =~ "Apple_Terminal|iTerm.app" ]]; then
+    :
+elif [ "$HOME" = "$PWD" ]; then
     tty_pwd_restore
     chpwd_functions+=tty_pwd_save
 fi
