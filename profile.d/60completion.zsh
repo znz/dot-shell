@@ -1,5 +1,6 @@
 #!/bin/zsh
 autoload -U compinit
+typeset -U fpath FPATH
 case "$OSTYPE" in
   cygwin|darwin19.0)
     my_compinit () {
