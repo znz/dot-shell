@@ -27,5 +27,6 @@ if [[ ! -s "$HOME/.rvm/scripts/rvm" ]]  ; then
     unset -f rbenv
     if type rbenv >/dev/null 2>&1; then
 	eval "$(rbenv init - --no-rehash)"
+	fpath+=($RBENV_ROOT/completions)
     fi
 fi
