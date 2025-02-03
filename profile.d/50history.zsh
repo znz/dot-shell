@@ -1,9 +1,24 @@
 #!/bin/zsh
 
 # 履歴関係
-HISTFILE=$HOME/.config/shell/zhistory/$(print -P '%n.%M')
+
+# HISTSIZE=2000
+# $SAVEHIST=1000
 HISTSIZE=12345678
-SAVEHIST=12345678
+SAVEHIST=$HISTSIZE
+
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
+
+# migration
+[[ -f "$HISTFILE" ]] || {
+    sleep $[$RANDOM%10]
+    mkdir -p $HISTFILE:h
+    if [[ -f "$HOME/.zsh_history" ]]; then
+        mv -vi "$HOME/.zsh_history" "$HISTFILE"
+    elif [[ -f "$HOME/.config/shell/zhistory/$(print -P '%n.%M')" ]]; then
+        mv -vi "$HOME/.config/shell/zhistory/$(print -P '%n.%M')" "$HISTFILE"
+    fi
+}
 
 ## 無ければ作る。
 [ -d $HISTFILE:h ] || {

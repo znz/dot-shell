@@ -13,17 +13,14 @@ case "$OSTYPE" in
     }
     ;;
 esac
-if [ -d "${XDG_CACHE_HOME:-$HOME/.cache}/shell" ]; then
-    my_compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/shell/$HOST.zcompdump"
-else
-    my_compinit
-fi
+
+[ -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" ] || mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+my_compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
+
 
 # cache
 zstyle ':completion:*' use-cache on
-if [ -d "${XDG_CACHE_HOME:-$HOME/.cache}/shell" ]; then
-    zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/shell/$HOST.zcompcache"
-fi
+zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
 
 # http://pc5.2ch.net/test/read.cgi/unix/1080002786/516-518n
 # 補完候補から.svnを除く。

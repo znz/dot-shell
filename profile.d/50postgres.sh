@@ -1,4 +1,4 @@
 # brew install libpq
 if [ -d /opt/homebrew/opt/libpq/bin ]; then
-    PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+    my_append_path /opt/homebrew/opt/libpq/bin
 fi
