@@ -4,6 +4,7 @@
 : ${XDG_STATE_HOME:=~/.local/state}; export XDG_STATE_HOME
 case "$OSTYPE" in
     darwin*)
-	: ${XDG_RUNTIME_DIR:=$(getconf DARWIN_USER_TEMP_DIR)}; export XDG_RUNTIME_DIR
-	;;
+        : ${XDG_RUNTIME_DIR:=$(getconf DARWIN_USER_TEMP_DIR)}; export XDG_RUNTIME_DIR
+        alias emacsclient='env -u XDG_RUNTIME_DIR emacsclient'
+        ;;
 esac
