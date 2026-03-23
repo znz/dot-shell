@@ -1,28 +1,14 @@
 #!/bin/zsh
-autoload -U compinit
+autoload -Uz compinit
 typeset -U fpath FPATH
-case "$OSTYPE" in
-  cygwin|darwin19.0)
-    my_compinit () {
-        compinit -u "$@"
-    }
-    ;;
-  *)
-    my_compinit () {
-        compinit "$@"
-    }
-    ;;
-esac
 
 [ -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" ] || mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
-my_compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
-
+compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
 
 # cache
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
 
-# http://pc5.2ch.net/test/read.cgi/unix/1080002786/516-518n
 # 補完候補から.svnを除く。
 # .で始まるディレクトリが候補になっていなかったのでコメントアウトしていたが、
 # .で始まる補完の場合に出ていたので有効に。
