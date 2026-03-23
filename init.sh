@@ -23,7 +23,7 @@ colima start --cpu 4 --disk 100 --memory 8 --vm-type vz
 #json=$(colima ssh cat /etc/docker/daemon.json | jq '.["registry-mirrors"] |= (.+["https://mirror.gcr.io"] | unique)') sh -c 'if [ -n "$json" ]; then echo "$json" | colima ssh sudo tee /etc/docker/daemon.json; fi'
 #colima ssh sudo systemctl restart docker
 
-docker pull ghcr.io/ruby/all-ruby
+docker pull --platform=linux/amd64 ghcr.io/ruby/all-ruby
 docker pull --platform=linux/amd64 rubylang/all-ruby
 # docker run --rm -it quay.io/podman/hello
 
