@@ -2,8 +2,21 @@
 autoload -Uz compinit
 typeset -U fpath FPATH
 
-[ -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" ] || mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
-compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
+() {
+    # emulate -L zsh
+    # setopt localoptions extendedglob
+    local _zcompdump="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump-$ZSH_VERSION"
+    mkdir -p "${_zcompdump:h}"
+    # https://zenn.dev/i9wa4/articles/2026-01-01-zsh-startup-optimization-compinit
+    # の
+    # if [[ -n "${_zcompdump}"(#qN.mh+24) ]]; then
+    # は # を Emacs がコメント開始と誤認識するので extendedglob なしにした。
+    if [[ -n $(echo ${_zcompdump}(N.mh+24)) ]]; then
+	compinit -d "${_zcompdump}"
+    else
+	compinit -C -d "${_zcompdump}"
+    fi
+}
 
 # cache
 zstyle ':completion:*' use-cache on
