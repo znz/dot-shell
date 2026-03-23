@@ -4,9 +4,9 @@ set -euo pipefail
 
 [ $(uname -s) = Darwin ]
 
-if ! ssh-add -l &>/dev/null; then
-    ssh-add ~/.ssh/id_ed25519 ~/.ssh/*/id_ed25519
-fi
+# if ! ssh-add -l &>/dev/null; then
+#     ssh-add ~/.ssh/id_ed25519 ~/.ssh/*/id_ed25519
+# fi
 
 gpg -K &>/dev/null
 
