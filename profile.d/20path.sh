@@ -65,5 +65,7 @@ if [ -d $HOME/homebrew/bin ]; then
     my_prepend_path_before /usr/bin $HOME/homebrew/bin
 fi
 
+my_prepend_path /opt/homebrew/Library/Homebrew/vendor/portable-ruby/current/bin
+
 # Use newer bison (GPL 3+)
 my_prepend_path /opt/homebrew/opt/bison/bin
