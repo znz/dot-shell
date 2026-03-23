@@ -1,9 +1,14 @@
 # use default if it already exists
-if [ -d "$HOME/.anyenv/bin" ]; then
-  PATH="$HOME/.anyenv/bin:$PATH"
-  eval "$(anyenv init - --no-rehash)"
-else
+if [ -d "$XDG_DATA_HOME/anyenv" ]; then
     export ANYENV_ROOT="$XDG_DATA_HOME/anyenv"
+fi
+if [ -d "${ANYENV_ROOT:-$HOME/.anyenv}" ]; then
+    PATH="${ANYENV_ROOT:-$HOME/.anyenv}/bin:$PATH"
+    eval "$(anyenv init - --no-rehash)"
+fi
+
+my_anyenv_init () {
+    : "${ANYENV_ROOT:=$XDG_DATA_HOME/anyenv}"
     [ -d "$ANYENV_ROOT" ] || git clone --depth=1 https://github.com/anyenv/anyenv.git "$ANYENV_ROOT"
     export PATH="${ANYENV_ROOT:-$HOME/.anyenv}/bin:$PATH"
     eval "$(anyenv init -)"
@@ -17,4 +22,4 @@ else
     [ -d "$RBENV_ROOT/plugins/rbenv-plug" ] || git clone --depth=1 https://github.com/znz/rbenv-plug.git "$RBENV_ROOT/plugins/rbenv-plug"
     [ -d "$RBENV_ROOT/plugins/rbenv-aliases" ] || rbenv plug aliases
     [ -d "$RBENV_ROOT/plugins/rbenv-each" ] || rbenv plug each
-fi
+}
