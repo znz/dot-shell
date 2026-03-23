@@ -10,3 +10,7 @@ logs-dir=${XDG_STATE_HOME}/npm/logs
 EOF
     }
 fi
+
+if type npm >/dev/null 2>&1; then
+    my_append_path "$(npm prefix -g)/bin"
+fi
