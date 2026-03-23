@@ -3,6 +3,14 @@
 
 set -euo pipefail
 
+() { # migrate gitconfig
+    gitconfig="${XDG_CONFIG_HOME:=~/.config}/git/config"
+    if [[ ! -f $gitconfig ]] && [[ -f ~/.gitconfig ]]; then
+	mkdir -pv ${gitconfig:h}
+	mv -vi ~/.gitconfig $gitconfig
+    fi
+}
+
 () { # (Re-)start gpg-agent
     gpgconf --kill gpg-agent
     local GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
