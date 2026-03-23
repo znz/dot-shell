@@ -8,7 +8,23 @@ set -euo pipefail
 #     ssh-add ~/.ssh/id_ed25519 ~/.ssh/*/id_ed25519
 # fi
 
-gpg -K &>/dev/null
+() { # Create $HOME/.zshenv
+    zshenv=$HOME/.zshenv
+    [[ -f $zshenv ]] || touch $zshenv
+    grep -q SHELL_SESSIONS_DISABLE=1 $zshenv || echo SHELL_SESSIONS_DISABLE=1 >> $zshenv
+    grep -q ZDOTDIR= $zshenv || echo 'ZDOTDIR=${XDG_CONFIG_HOME:=~/.config}/zsh' >> $zshenv
+}
+
+() { # create $ZDOTDIR/.zshrc
+    zshrc="${XDG_CONFIG_HOME:=~/.config}/zsh/.zshrc"
+    [[ -d ${zshrc:h} ]] || mkdir -p ${zshrc:h}
+    [[ -f $zshrc ]] || echo ". $(cd $(dirname "$0") && pwd)/zshrc.zsh" > $zshrc
+}
+
+() { # (Re-)start gpg-agent
+    gpgconf --kill gpg-agent
+    gpg -K &>/dev/null
+}
 
 if ! test -f /etc/pam.d/sudo_local; then
     sudo cp /etc/pam.d/sudo_local{.template,}
@@ -29,7 +45,11 @@ docker pull --platform=linux/amd64 rubylang/all-ruby
 
 ## lima
 
-limactl start default
+if [[ -d ~/.lima/default ]]; then
+    limactl start default
+else
+    limactl start --name=default template:ubuntu-lts
+fi
 
 (cd ~/s/github.com/znz/ansible-playbook-2022 && git pull --rebase --autostash --prune && rake lima:all)
 
@@ -47,14 +67,19 @@ limactl start default
 
 ## rust
 
-rustup update
+if (( ${+commands[rustup]} )); then
+    rustup update
+fi
 
 ## anyenv
 
-anyenv update
+if (( ${+commands[anyenv]} )); then
+    anyenv update
+fi
 
-# echo ${(M)${(f)"$(rbenv install -l)"}:#[0-9]*} | xargs -n 1 rbenv install
-bash -eux <<'EOF'
+if (( ${+commands[rbenv]} )); then
+    # echo ${(M)${(f)"$(rbenv install -l)"}:#[0-9]*} | xargs -n 1 rbenv install
+    bash -eux <<'EOF'
 rbenv-install-stable () {
     local v
     for v in $(rbenv install -l | grep -E '^[[:digit:]]'); do
@@ -63,5 +88,6 @@ rbenv-install-stable () {
 }
 rbenv-install-stable
 EOF
+fi
 
 ## URLs
