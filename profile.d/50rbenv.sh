@@ -1,5 +1,5 @@
 # lazy loading
-if !type rbenv >/dev/null 2>&1; then
+if ! type rbenv >/dev/null 2>&1; then
     rbenv () {
 	if [ -n "$rvm_path" ]; then
 	    echo "rvm is enabled."
