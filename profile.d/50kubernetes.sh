@@ -1,4 +1,4 @@
-export KUBECONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/kube"
+export KUBECONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/kube/config"
 export KUBECACHEDIR="${XDG_CACHE_HOME:-$HOME/.cache}/kube"
 
 export MINIKUBE_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/minikube"
