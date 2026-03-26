@@ -38,13 +38,7 @@ if ! test -f /etc/pam.d/sudo_local; then
     sudo -e /etc/pam.d/sudo_local
 fi
 
-## colima
-
-# colima start --cpu 4 --disk 100 --memory 12 --vm-type vz --vz-rosetta
-# colima start --cpu 4 --disk 100 --memory 2 --vm-type qemu --mount-type 9p
-colima start --cpu 4 --disk 100 --memory 8 --vm-type vz
-#json=$(colima ssh cat /etc/docker/daemon.json | jq '.["registry-mirrors"] |= (.+["https://mirror.gcr.io"] | unique)') sh -c 'if [ -n "$json" ]; then echo "$json" | colima ssh sudo tee /etc/docker/daemon.json; fi'
-#colima ssh sudo systemctl restart docker
+## docker
 
 () { # Update cliPluginsExtraDirs
     local config_json=${DOCKER_CONFIG:-${XDG_CONFIG_HOME:-$HOME/.config}/docker}/config.json
@@ -52,6 +46,14 @@ colima start --cpu 4 --disk 100 --memory 8 --vm-type vz
     jq '.["cliPluginsExtraDirs"] |= (.+["/opt/homebrew/lib/docker/cli-plugins"] | unique)' "$config_json" > "$config_json.$$"
     mv -vi "$config_json.$$" "$config_json"
 }
+
+## colima
+
+# colima start --cpu 4 --disk 100 --memory 12 --vm-type vz --vz-rosetta
+# colima start --cpu 4 --disk 100 --memory 2 --vm-type qemu --mount-type 9p
+colima start --cpu 4 --disk 100 --memory 8 --vm-type vz
+#json=$(colima ssh cat /etc/docker/daemon.json | jq '.["registry-mirrors"] |= (.+["https://mirror.gcr.io"] | unique)') sh -c 'if [ -n "$json" ]; then echo "$json" | colima ssh sudo tee /etc/docker/daemon.json; fi'
+#colima ssh sudo systemctl restart docker
 
 docker pull --platform=linux/amd64 ghcr.io/ruby/all-ruby
 docker pull --platform=linux/amd64 rubylang/all-ruby
