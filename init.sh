@@ -46,6 +46,13 @@ colima start --cpu 4 --disk 100 --memory 8 --vm-type vz
 #json=$(colima ssh cat /etc/docker/daemon.json | jq '.["registry-mirrors"] |= (.+["https://mirror.gcr.io"] | unique)') sh -c 'if [ -n "$json" ]; then echo "$json" | colima ssh sudo tee /etc/docker/daemon.json; fi'
 #colima ssh sudo systemctl restart docker
 
+() { # Update cliPluginsExtraDirs
+    local config_json=${DOCKER_CONFIG:-${XDG_CONFIG_HOME:-$HOME/.config}/docker}/config.json
+    grep -q /opt/homebrew/lib/docker/cli-plugins "$config_json" && return
+    jq '.["cliPluginsExtraDirs"] |= (.+["/opt/homebrew/lib/docker/cli-plugins"] | unique)' "$config_json" > "$config_json.$$"
+    mv -vi "$config_json.$$" "$config_json"
+}
+
 docker pull --platform=linux/amd64 ghcr.io/ruby/all-ruby
 docker pull --platform=linux/amd64 rubylang/all-ruby
 # docker run --rm -it quay.io/podman/hello
