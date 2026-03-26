@@ -47,6 +47,15 @@ fi
     mv -vi "$config_json.$$.~" "$config_json"
 }
 
+() { # docker-credential-helpers
+    local config_json=${DOCKER_CONFIG:-${XDG_CONFIG_HOME:-$HOME/.config}/docker}/config.json
+    grep -q credsStore "$config_json" && return
+    (( ${+commands[pass]} )) || return 0
+    (( ${+commands[docker-credential-pass]} )) || return 0
+    jq '.["credsStore"]="pass"' "$config_json" > "$config_json.$$.~"
+    mv -vi "$config_json.$$.~" "$config_json"
+}
+
 ## colima
 
 # colima start --cpu 4 --disk 100 --memory 12 --vm-type vz --vz-rosetta
