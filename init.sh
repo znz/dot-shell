@@ -43,8 +43,8 @@ fi
 () { # Update cliPluginsExtraDirs
     local config_json=${DOCKER_CONFIG:-${XDG_CONFIG_HOME:-$HOME/.config}/docker}/config.json
     grep -q /opt/homebrew/lib/docker/cli-plugins "$config_json" && return
-    jq '.["cliPluginsExtraDirs"] |= (.+["/opt/homebrew/lib/docker/cli-plugins"] | unique)' "$config_json" > "$config_json.$$"
-    mv -vi "$config_json.$$" "$config_json"
+    jq '.["cliPluginsExtraDirs"] |= (.+["/opt/homebrew/lib/docker/cli-plugins"] | unique)' "$config_json" > "$config_json.$$.~"
+    mv -vi "$config_json.$$.~" "$config_json"
 }
 
 ## colima
