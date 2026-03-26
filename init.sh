@@ -70,13 +70,19 @@ docker pull --platform=linux/amd64 rubylang/all-ruby
 
 ## lima
 
-if [[ -d ~/.lima/default ]]; then
-    limactl start default
-else
-    limactl start --name=default template:ubuntu-lts
-fi
+() {
+    cd ~/s/github.com/znz/ansible-playbook-2022
+    git pull --rebase --autostash --prune
 
-(cd ~/s/github.com/znz/ansible-playbook-2022 && git pull --rebase --autostash --prune && rake lima:all)
+    if [[ -d ~/.lima/default ]]; then
+        limactl start default
+    else
+        limactl start --name=default template:ubuntu-lts
+	rake 'ansible:runner[lima-default]'
+    fi
+
+    rake lima:all
+}
 
 ## brew
 
