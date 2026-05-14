@@ -42,6 +42,13 @@ fi
 
 () { # Update cliPluginsExtraDirs
     local config_json=${DOCKER_CONFIG:-${XDG_CONFIG_HOME:-$HOME/.config}/docker}/config.json
+    if [[ ! -f $config_json ]]; then
+         config_json="$HOME/.docker/config.json"
+         if [[ ! -f $config_json ]]; then
+             echo "docker config.json not found"
+             return
+         fi
+    fi
     grep -q /opt/homebrew/lib/docker/cli-plugins "$config_json" && return
     jq '.["cliPluginsExtraDirs"] |= (.+["/opt/homebrew/lib/docker/cli-plugins"] | unique)' "$config_json" > "$config_json.$$.~"
     mv -vi "$config_json.$$.~" "$config_json"
@@ -49,6 +56,14 @@ fi
 
 () { # docker-credential-helpers
     local config_json=${DOCKER_CONFIG:-${XDG_CONFIG_HOME:-$HOME/.config}/docker}/config.json
+    if [[ ! -f $config_json ]]; then
+         config_json="$HOME/.docker/config.json"
+         if [[ ! -f $config_json ]]; then
+             echo "docker config.json not found"
+             return
+         fi
+    fi
+    [[ -f $config_json ]] || config_json="$HOME/.docker/config.json"
     grep -q credsStore "$config_json" && return
     (( ${+commands[pass]} )) || return 0
     (( ${+commands[docker-credential-pass]} )) || return 0
@@ -78,7 +93,7 @@ docker pull --platform=linux/amd64 rubylang/all-ruby
         limactl start default
     else
         limactl start --name=default template:ubuntu-lts
-	rake 'ansible:runner[lima-default]'
+        rake 'ansible:runner[lima-default]'
     fi
 
     rake lima:all
