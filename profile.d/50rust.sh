@@ -5,3 +5,4 @@ else
     my_append_path "$CARGO_HOME/bin"
     export RUSTUP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/rustup"
 fi
+my_append_path "/opt/homebrew/opt/rustup/bin"
