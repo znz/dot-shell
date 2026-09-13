@@ -81,7 +81,19 @@ colima start --cpu 4 --disk 100 --memory 8 --vm-type vz
 
 docker pull --platform=linux/amd64 ghcr.io/ruby/all-ruby
 docker pull --platform=linux/amd64 rubylang/all-ruby
+
 # docker run --rm -it quay.io/podman/hello
+
+() { # rubylang/ruby
+    docker pull ghcr.io/ruby/ruby:master-noble
+    # docker pull rubylang/ruby:master-noble
+    local versions=($(curl -s 'https://cache.ruby-lang.org/pub/misc/ci_versions/cruby.json' | tr -cs '0-9.' ' '))
+    local version
+    for version in "${versions[@]}"; do
+	docker pull ghcr.io/ruby/ruby:${version}-noble
+	# docker pull rubylang/ruby:${version}-noble
+    done
+}
 
 ## lima
 
