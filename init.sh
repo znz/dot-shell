@@ -111,18 +111,6 @@ docker pull --platform=linux/amd64 rubylang/all-ruby
     rake lima:all
 }
 
-## brew
-
-# brew upgrade
-
-# brew services start syncthing
-
-# brew services start ollama
-# brew services stop ollama
-
-# launchctl unload ~/Library/LaunchAgents/com.zabbix.agentd.plist
-# launchctl load -w ~/Library/LaunchAgents/com.zabbix.agentd.plist
-
 ## rust
 
 if (( ${+commands[rustup]} )); then
@@ -147,5 +135,20 @@ rbenv-install-stable () {
 rbenv-install-stable
 EOF
 fi
+
+## brew
+
+# brew upgrade
+if (( ${+commands[brew]} )); then
+    brew upgrade
+fi
+
+# brew services start syncthing
+
+# brew services start ollama
+# brew services stop ollama
+
+# launchctl unload ~/Library/LaunchAgents/com.zabbix.agentd.plist
+# launchctl load -w ~/Library/LaunchAgents/com.zabbix.agentd.plist
 
 ## URLs
