@@ -136,6 +136,12 @@ rbenv-install-stable
 EOF
 fi
 
+## TimeMachineDisk
+
+if [[ -d ~/TimeMachineDisk.sparsebundle ]]; then
+    hdiutil attach ~/TimeMachineDisk.sparsebundle
+fi
+
 ## brew
 
 # brew upgrade
