@@ -38,6 +38,16 @@ if ! test -f /etc/pam.d/sudo_local; then
     sudo -e /etc/pam.d/sudo_local
 fi
 
+## Homebrew
+
+() { # Homebrew
+    local dir="$HOME/Sync/$(date +%Y/%m)"
+    brew upgrade
+    if [[ -d "$dir" ]]; then
+	brew bundle dump --file=- > "$dir/$HOST.Brewfile"
+    fi
+}
+
 ## docker
 
 () { # Update cliPluginsExtraDirs
